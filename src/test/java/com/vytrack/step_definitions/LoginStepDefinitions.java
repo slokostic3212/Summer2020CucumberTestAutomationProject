@@ -38,4 +38,21 @@ public class LoginStepDefinitions {
     public void user_logs_in_as_a(String string) {
         loginPage.login(string);
     }
+
+    //  String string = "storemanager85";
+//  String string2 =  "wrong";
+    //When user logs in with "storemanager85" username and "wrong" password
+    @When("user logs in with {string} username and {string} password")
+    public void user_logs_in_with_username_and_password(String string, String string2) {
+        loginPage.login(string, string2);
+    }
+
+    //    String expected = "Invalid user name or password."
+//    Then user verifies that "Invalid user name or password." message is displayed
+    @Then("user verifies that {string} message is displayed")
+    public void user_verifies_that_message_is_displayed(String expected) {
+        String actualResult = loginPage.getWarningMessageText();
+        Assert.assertEquals(expected, actualResult);
+    }
+
 }
