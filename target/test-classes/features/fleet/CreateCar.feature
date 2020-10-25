@@ -10,6 +10,8 @@ Feature: As user, I want to be able to create new cars
     When user adds new vehicle information
       | License Plate | SDET |
       | Model Year    | 2021 |
+    And user clicks on save and close button
+
 
 
 
