@@ -7,8 +7,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.List;
 
 public abstract class BasePage {
 
@@ -19,7 +20,7 @@ public abstract class BasePage {
     protected WebElement saveAndCloseBtn;
 
     @FindBy(css = "[class='loader-mask']")
-    protected WebElement loaderMask;
+    protected List<WebElement> loaderMask;
 
     public BasePage() {
         PageFactory.initElements(Driver.getDriver(), this);
@@ -41,10 +42,10 @@ public abstract class BasePage {
         String tabXpath = "//*[contains(text(),'" + tab + "') and @class='title title-level-1']";
         String moduleXpath = "//*[contains(text(),'" + module + "') and @class='title title-level-2']";
 
-        BrowserUtils.wait(4);
-        // wait till loader mask disappears
-        wait.until(ExpectedConditions.invisibilityOf(loaderMask));
+        //wait until loader mask disappears
+        wait.until(ExpectedConditions.invisibilityOfAllElements(loaderMask));
 
+        BrowserUtils.wait(3);
         //wait for presence and ability co click on element
         WebElement tabElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(tabXpath)));
         wait.until(ExpectedConditions.elementToBeClickable(tabElement)).click();
@@ -52,13 +53,13 @@ public abstract class BasePage {
         WebElement moduleElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(moduleXpath)));
         wait.until(ExpectedConditions.elementToBeClickable(moduleElement)).click();
 
-        // wait till loader mask disappears
-        wait.until(ExpectedConditions.invisibilityOf(loaderMask));
+        //wait until loader mask disappears
+        wait.until(ExpectedConditions.invisibilityOfAllElements(loaderMask));
 
-        BrowserUtils.wait(4);
+        BrowserUtils.wait(3);
     }
 
-    public void clickSaveAndClose() {
+    public void clickSaveAndClose(){
         BrowserUtils.clickOnElement(saveAndCloseBtn);
 
 
