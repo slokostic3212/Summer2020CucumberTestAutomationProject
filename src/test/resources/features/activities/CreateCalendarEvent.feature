@@ -10,3 +10,6 @@ Feature: As user, I want to be able to create calendar events
       | Title          | B20 Graduation Party                        |
       | Description    | All B20 friends are invited for this party! |
     And user clicks on save and close button
+    Then user verifies that new calendar event is displayed:
+    |Title             |B20 Graduation Party                       |
+    |Description       |All B20 friends are invited for this party |

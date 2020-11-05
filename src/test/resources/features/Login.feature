@@ -25,15 +25,16 @@ Scenario: Login as a sales manager
     Then user should see dashboard page
 
 
-  @paranmetrized_test @smoke_test @s_o
-  Scenario Outline: Parametrized login
+  @s_o #changed from @paranmetrized_test @smoke_test @s_o
+  Scenario Outline: Parametrized login as <role>
     When user logs in as "<role> "
-    Then user should see dashboard page
+    Then user should see "<page_title>" page
 
     Examples:
-    |role|
-    |sales manager|
-    |store manager|
+    |role         |page_title        |
+    |sales manager|Dashboard         |
+    |store manager|Dashboard         |
+    |driver       |Quick Launchpad   |
 
     # role - variable u can name parameters as you want
     # 1st row - always reserced for parameters
@@ -45,3 +46,13 @@ Scenario: Login as a sales manager
 
       When user logs in with "storemanger85" username and "wrong" password
       Then user verifies that "Invalid username or password." message is displayed
+
+    Scenario Outline:  Invalid login
+      When user logs in as a "<username" username and "<password>" password
+      Then user verifies that "<message>" message is displayed
+
+      Examples: data set
+
+      |username   | password   |  message          |
+      | wrong     | bad        | Invalid user name or password |
+      | wrong     | bad        | Invalid user name or password |
