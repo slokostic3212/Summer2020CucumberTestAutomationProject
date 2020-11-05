@@ -12,11 +12,33 @@ Scenario: Login as a sales manager
   Then user should see dashboard page
 
 
-  @paramtrized_test
+  @paramtrized_test @smoke_test
   Scenario: Parametrized login
 
     When user logs in as a "store manager"
     Then user should see dashboard page
+
+  @paramtrized_test @smoke_test
+  Scenario: Parametrized login
+
+    When user logs in as a "sales manager"
+    Then user should see dashboard page
+
+
+  @paranmetrized_test @smoke_test @s_o
+  Scenario Outline: Parametrized login
+    When user logs in as "<role> "
+    Then user should see dashboard page
+
+    Examples:
+    |role|
+    |sales manager|
+    |store manager|
+
+    # role - variable u can name parameters as you want
+    # 1st row - always reserced for parameters
+    # for autoformating for command + alt + l
+    # "driver" - is a parameter "" allows to do test paraetriztion which helps to re-use test
 
     @negative_login
     Scenario: Invalid password
