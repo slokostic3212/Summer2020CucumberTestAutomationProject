@@ -6,6 +6,7 @@ Feature: As user I want to be able to login under different roles
   Background: common steps
     Given user is on the login page
 
+  @smoke
   Scenario: Login as a sales manger
     When user logs in
     Then user should see dashboard page

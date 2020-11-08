@@ -16,6 +16,24 @@ import java.util.concurrent.TimeUnit;
  * These methods can be a part of any step definition class.
  * Common practice is to store them in the separate class.
  */
+package com.vytrack.step_definitions;
+
+import com.vytrack.utils.Driver;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+
+import java.util.concurrent.TimeUnit;
+
+/**
+ * Hooks name is not reserved. You may name this class in any way.
+ * For example: SuiteSetupAndTearDown
+ * Hooks triggered based on tags not class name or their location.
+ * These methods can be a part of any step definition class.
+ * Common practice is to store them in the separate class.
+ */
 public class Hooks {
 
 //    hook before = @BeforeMethod in TestNG
